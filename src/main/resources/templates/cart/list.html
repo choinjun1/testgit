@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>장바구니번호</th>
+        <th>주문자</th>
+        <th>이미지</th>
+        <th>상품이름</th>
+        <th>소비자가</th>
+        <th>주문수량</th>
+        <th>작업</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="data:${lists}">
+        <td>
+            <p th:text="${data.id}"></p>
+        </td>
+        <td>
+            <p th:text="${data.memberEntity.name}"></p>
+        </td>
+        <td>
+            <img th:src="|/images/item/@{${data.productEntity.productImages[0].imageFile}}|" width="150" height="100">
+        </td>
+        <td>
+            <p th:text="${data.productEntity.productName}"></p>
+        </td>
+        <td>
+            <p th:text="${data.productEntity.productPrice}"></p>
+        </td>
+        <td>
+            <p th:text="${data.count}"></p>
+        </td>
+        <td>
+            <a th:href="@{/cart/remove(cartId=${data.id})}"><button type="button">삭제</button></a>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -23,53 +23,29 @@ repositories {
 }
 
 dependencies {
-
-    //JPA
+    //기본처리
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    //보안인증
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    //타임리프에 보안인증
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
-    //타임리프
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    //검증
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    //웹개발
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    //룸북
     compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    //유틸리티
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    //데이터베이스
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-    //서버
+    annotationProcessor 'org.projectlombok:lombok'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-    //테스트
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
-
-    //===== 사용자 추가 =====
-    //테스트에서 룸북 사용 가능
-    testCompileOnly 'org.projectlombok:lombok'
-    testAnnotationProcessor 'org.projectlombok:lombok'
-
-    //java8time 타임리프 추가 (메이븐에서 참고)
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-java8time'
-
-    //Thymeleaf - layout
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
-
-    //mapper 생성 (맵핑. DTO- Entity 사이의 변환 작업)
     implementation "org.modelmapper:modelmapper:3.1.1"
-
-    //사용자 추가 썸네일
-    //OAuth2 인증
-    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-
-    //AI
+    //S3파일 업로드
+    compileOnly 'org.springframework.cloud:spring-cloud-starter-aws:2.0.1.RELEASE'
+    //플라스크 서버 값처리
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
-
+    //보안
+    //implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    //implementation 'org.springframework.boot:spring-boot-starter-security'
+    //implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    //검증
+    //implementation 'org.springframework.boot:spring-boot-starter-validation'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('bootBuildImage') {

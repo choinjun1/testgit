@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/product/update" method="post" enctype="multipart/form-data">
+  상품번호 : <input type="number" name="productId" th:value="${dtos.productId}"><br>
+  상품이름 : <input type="text" name="productName" th:value="${dtos.productName}"><br>
+  상품설명 : <input type="text" name="productContent" th:value="${dtos.productContent}"><br>
+  상품상세정보 : <textarea name="productDetail" rows="5" th:text="${dtos.productDetail}"></textarea><br>
+  소비자가(정가) <input type="number" name="productCost" th:value="${dtos.productCost}"><br>
+  판매가 : <input type="number" name="productPrice" th:value="${dtos.productPrice}"><br>
+  할인율 : <input type="number" name="productDis" th:value="${dtos.productDis}"><br>
+  상품옵션 : <input type="number" name="productOpt" th:value="${dtos.productOpt}"><br>
+  상품재고수량 : <input type="number" name="productCnt" th:value="${dtos.productCnt}"><br>
+  상품좋아요(관심,찜) : <input type="number" name="productLike" th:value="${dtos.productLike}"><br>
+  상품조회수 : <input type="number" name="productViewcnt" th:value="${dtos.productViewcnt}"><br>
+  카테고리 :
+     <select name="categoryTypeRole">
+         <option th:each="state:${categorys}"
+                 th:value="${state.name()}"
+                 th:text="${state.getDescription()}"
+                 th:selected="${state == dtos.categoryTypeRole}"></option>
+     </select><br>
+    상품판매상태 :
+    <select name="sellStateRole">
+        <option th:each="state:${sells}" th:value="${state.name()}"
+                th:text="${state.getDescription()}"
+                th:selected="${state == dtos.sellStateRole}"></option>
+    </select><br>
+    이미지번호(나중에 숨김처리) : <input type="number" name="imageDTOs[0].imageId" th:value="${dtos.imageDTOs[0].imageId}"> <br>
+    상품이미지 1(대표):
+    <img th:src="|/images/item/@{${dtos.imageDTOs[0].imageFile}}|" width="150" height="100">
+    <input type="hidden" name="imageDTOs[0].imageType" value="0">
+    <input type="file" name="images"><br>
+    이미지번호(나중에 숨김처리) : <input type="number" name="imageDTOs[1].imageId" th:value="${dtos.imageDTOs[1].imageId}"> <br>
+    상품이미지 2(서브):
+    <img th:src="|/images/item/@{${dtos.imageDTOs[1].imageFile}}|" width="150" height="100">
+    <input type="hidden" name="imageDTOs[1].imageType" value="1">
+    <input type="file" name="images"><br>
+    이미지번호(나중에 숨김처리) : <input type="number" name="imageDTOs[2].imageId" th:value="${dtos.imageDTOs[2].imageId}"><br>
+    상품이미지 3(상세):
+    <img th:src="|/images/item/@{${dtos.imageDTOs[2].imageFile}}|" width="150" height="100">
+    <input type="hidden" name="imageDTOs[2].imageType" value="2">
+    <input type="file" name="images"><br>
+    <!--<input type="file" name="images" multiple>-->
+    <button type="submit">상품수정</button>
+  <a th:href="@{/product/remove(id=${dtos.productId})}"><button type="button">삭제</button></a>
+  <a th:href="@{/product/cart(id=${dtos.productId})}"><button type="button">장바구니</button></a>
+</form>
+</body>
+</html>

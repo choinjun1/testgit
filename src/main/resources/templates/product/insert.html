@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/product/insert" method="post" enctype="multipart/form-data">
+  상품번호(숨김처리) : <input type="number" name="productId"><br>
+  상품이름 : <input type="text" name="productName"><br>
+  상품설명 : <input type="text" name="productContent"><br>
+  상품상세정보 : <textarea name="productDetail" rows="5"></textarea><br>
+  소비자가(정가) <input type="number" name="productCost"><br>
+  판매가 : <input type="number" name="productPrice"><br>
+  할인율 : <input type="number" name="productDis"><br>
+  상품옵션 : <input type="number" name="productOpt"><br>
+  상품재고수량 : <input type="number" name="productCnt"><br>
+  상품좋아요(관심,찜) : <input type="number" name="productLike"><br>
+  상품조회수 : <input type="number" name="productViewcnt"><br>
+  카테고리 :
+     <select name="categoryTypeRole">
+         <option th:each="state:${categorys}"
+                 th:value="${state.name()}"
+                 th:text="${state.getDescription()}"></option>
+     </select><br>
+    상품판매상태 :
+    <select name="sellStateRole">
+        <option th:each="state:${sells}" th:value="${state.name()}"
+                th:text="${state.getDescription()}"></option>
+    </select><br>
+    상품이미지 1(대표):
+    <input type="hidden" name="imageDTOs[0].imageType" value="0">
+    <input type="file" name="images"><br>
+    상품이미지 2(서브):
+    <input type="hidden" name="imageDTOs[1].imageType" value="1">
+    <input type="file" name="images"><br>
+    상품이미지 3(상세):
+    <input type="hidden" name="imageDTOs[2].imageType" value="2">
+    <input type="file" name="images"><br>
+    <!--<input type="file" name="images" multiple>-->
+    <button type="submit">상품등록</button>
+</form>
+</body>
+</html>
